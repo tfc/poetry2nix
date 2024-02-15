@@ -9199,6 +9199,8 @@
     "setuptools"
   ],
   "jupytext": [
+    "hatch-jupyter-builder",
+    "hatchling",
     "setuptools"
   ],
   "justbackoff": [
