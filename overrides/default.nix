@@ -3480,6 +3480,10 @@ lib.composeManyExtensions [
 
       psutil = super.psutil.overridePythonAttrs (
         old: {
+          postPatch = ''
+            substituteInPlace psutil/arch/osx/cpu.c \
+              --replace "kIOMainPortDefault" "kIOMasterPortDefault"
+          '';
           buildInputs = old.buildInputs or [ ]
             ++ lib.optionals (stdenv.isDarwin && stdenv.isx86_64) [ pkgs.darwin.apple_sdk.frameworks.CoreFoundation ]
             ++ lib.optionals stdenv.isDarwin [ pkgs.darwin.apple_sdk.frameworks.IOKit ];
